@@ -32,7 +32,7 @@ while True:
     screen.blit(text_surface, (300, 50))
 
 
-    if (snail_rect.left < -100):
+    if (snail_rect.right < 0):
         snail_rect.left= 800
     #Fundo obrigaorio porque ele apenas desenha na tela por cima do frame anterior
     screen.blit(snail_surface, snail_rect)
@@ -46,3 +46,13 @@ while True:
     pygame.display.update()
     # limita jogo a 60 fps
     fps.tick(60)
+
+    #Retorna True se teve colisão e False se não.
+    if player_rect.colliderect(snail_rect):
+        print('Collision')
+
+    #Checa se o cursor está encostando no personagem e printa se está sendo clicado ou não.
+    #Cada um dos tres campos é um botão do mouse.
+    mouse_pos = pygame.mouse.get_pos()
+    if player_rect.collidepoint(mouse_pos):
+        print(pygame.mouse.get_pressed())
