@@ -9,7 +9,9 @@ test_font = pygame.font.Font(None, 50)
 
 sky_surface = pygame.image.load('graphics/Sky.png').convert()
 ground_surface = pygame.image.load('graphics/Ground.png').convert()
-text_surface = test_font.render('My game', False, 'Black')
+
+score_surface = test_font.render('My game', False, 'Black')
+score_rect = score_surface.get_rect(center =(400, 50))
 
 snail_surface = pygame.image.load('graphics/Snail/Snail1.png').convert_alpha()
 snail_rect = snail_surface.get_rect(midbottom = (600, 301))
@@ -29,7 +31,14 @@ while True:
     screen.blit(sky_surface, (0,0))
     # a ordem que as imagens são desenhadas define o Z.
     screen.blit(ground_surface, (0, 301))
-    screen.blit(text_surface, (300, 50))
+
+    # Desenha um retangulo amarelo com o tamanho do retangulo do score
+    pygame.draw.rect(screen, 'Pink', score_rect)
+    pygame.draw.rect(screen, 'Pink', score_rect, 10)
+
+    #Exibe score
+    screen.blit(score_surface, score_rect)
+
 
 
     if (snail_rect.right < 0):
